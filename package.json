@@ -1,0 +1,22 @@
+{
+  "name": "sequelize-test-01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:create":"ts-node ./src/dbcreate.ts",
+    "db:load":"ts-node ./src/dbload.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^20.8.2",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.33.0",
+    "sqlite3": "^5.1.6",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
