@@ -1,63 +1,70 @@
-import { Sequelize, DataTypes } from 'sequelize';
-import SQLite from 'sqlite3';
+import { Sequelize, DataTypes } from "sequelize";
+import SQLite from "sqlite3";
 
 const db: Sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: './database.sqlite',
+  dialect: "sqlite",
+  storage: "./database.sqlite",
   dialectOptions: {
-    mode: SQLite.OPEN_SHAREDCACHE | SQLite.OPEN_READWRITE | SQLite.OPEN_CREATE
-  }
+    mode: SQLite.OPEN_SHAREDCACHE | SQLite.OPEN_READWRITE | SQLite.OPEN_CREATE,
+  },
 });
 
 const User = db.define(
-  'User',
+  "User",
   {
     userId: {
       type: DataTypes.STRING,
       primaryKey: true,
       allowNull: false,
-      unique: true
+      unique: true,
     },
     createdAt: {
-      type: DataTypes.DATE
+      type: DataTypes.DATE,
     },
     updatedAt: {
-      type: DataTypes.DATE
-    }
+      type: DataTypes.DATE,
+    },
   },
-  { modelName: 'user' }
+  { modelName: "user" }
 );
 
 const Task = db.define(
-  'task',
+  "task",
   {
     title: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     description: {
-      type: DataTypes.TEXT
+      type: DataTypes.TEXT,
     },
     key: {
       type: DataTypes.UUID,
       allowNull: false,
       unique: true,
-      defaultValue: DataTypes.UUIDV4
+      defaultValue: DataTypes.UUIDV4,
     },
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-      unique: true
+      unique: true,
+    },
+    user: {
+      type: DataTypes.STRING,
+      references: {
+        model: "user",
+        key: "userId",
+      },
     },
     createdAt: {
-      type: DataTypes.DATE
+      type: DataTypes.DATE,
     },
     updatedAt: {
-      type: DataTypes.DATE
-    }
+      type: DataTypes.DATE,
+    },
   },
-  { modelName: 'task' }
+  { modelName: "task" }
 );
 
 Task.belongsTo(User);

@@ -6,7 +6,7 @@ Task.create(
   {
     title: 'First task',
     description: 'The very first task',
-    user: { userId: 'stefano' }
+    user: 'stefano'
   },
   {
     include: [{ association: userTask }]
